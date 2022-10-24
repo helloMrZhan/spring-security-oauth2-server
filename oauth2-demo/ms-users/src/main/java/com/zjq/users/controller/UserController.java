@@ -1,4 +1,4 @@
-package com.zjq.oauth2.server.controller;
+package com.zjq.users.controller;
 
 import com.zjq.commons.model.domain.ResultInfo;
 import com.zjq.commons.model.domain.SignInIdentity;
@@ -9,9 +9,6 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.common.OAuth2AccessToken;
-import org.springframework.security.oauth2.common.OAuth2RefreshToken;
-import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -30,7 +27,7 @@ public class UserController {
     private HttpServletRequest request;
 
     @Resource
-    private RedisTokenStore redisTokenStore;
+//    private RedisTokenStore redisTokenStore;
 
     @Autowired
     private UserService userService;
@@ -79,13 +76,13 @@ public class UserController {
         if (access_token.toLowerCase().contains("bearer ".toLowerCase())) {
             access_token = access_token.toLowerCase().replace("bearer ", "");
         }
-        // 清除 redis token 信息
-        OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(access_token);
-        if (oAuth2AccessToken != null) {
-            redisTokenStore.removeAccessToken(oAuth2AccessToken);
-            OAuth2RefreshToken refreshToken = oAuth2AccessToken.getRefreshToken();
-            redisTokenStore.removeRefreshToken(refreshToken);
-        }
+//        // 清除 redis token 信息
+//        OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(access_token);
+//        if (oAuth2AccessToken != null) {
+//            redisTokenStore.removeAccessToken(oAuth2AccessToken);
+//            OAuth2RefreshToken refreshToken = oAuth2AccessToken.getRefreshToken();
+//            redisTokenStore.removeRefreshToken(refreshToken);
+//        }
         return ResultInfoUtil.buildSuccess(request.getServletPath(), "退出成功");
     }
 

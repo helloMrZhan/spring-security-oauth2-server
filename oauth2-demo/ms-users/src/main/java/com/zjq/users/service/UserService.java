@@ -8,7 +8,7 @@ import com.zjq.commons.model.pojo.Users;
 import com.zjq.commons.utils.AssertUtil;
 import com.zjq.commons.utils.ResultInfoUtil;
 import com.zjq.oauth2.server.mapper.UsersMapper;
-import com.zjq.users.config.ClientOAuth2DataConfiguration;
+import com.zjq.users.config.OAuth2ClientConfiguration;
 import com.zjq.users.domain.OAuthUserInfo;
 import com.zjq.users.vo.LoginUserInfo;
 import org.springframework.beans.BeanUtils;
@@ -40,7 +40,7 @@ public class UserService implements UserDetailsService {
     @Value("${service.name.ms-oauth-server}")
     private String oauthServerName;
     @Resource
-    private ClientOAuth2DataConfiguration clientOAuth2DataConfiguration;
+    private OAuth2ClientConfiguration oAuth2ClientConfiguration;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -75,11 +75,11 @@ public class UserService implements UserDetailsService {
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("username", account);
         body.add("password", password);
-        body.setAll(BeanUtil.beanToMap(clientOAuth2DataConfiguration));
+        body.setAll(BeanUtil.beanToMap(oAuth2ClientConfiguration));
         HttpEntity<MultiValueMap<String, Object>> entity = new HttpEntity<>(body, headers);
         // 设置 Authorization
-        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(clientOAuth2DataConfiguration.getClientId(),
-                clientOAuth2DataConfiguration.getSecret()));
+        restTemplate.getInterceptors().add(new BasicAuthenticationInterceptor(oAuth2ClientConfiguration.getClientId(),
+                oAuth2ClientConfiguration.getSecret()));
         // 发送请求
         ResponseEntity<ResultInfo> result = restTemplate.postForEntity(oauthServerName + "oauth/token", entity, ResultInfo.class);
         // 处理返回结果

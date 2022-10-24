@@ -39,10 +39,10 @@
         </dependency>
 
         <!-- spring cloud oauth2 -->
-        <dependency>
+        <!--<dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-oauth2</artifactId>
-        </dependency>
+        </dependency>-->
         <!-- commons 公共项目 -->
         <dependency>
             <groupId>com.zjq</groupId>
