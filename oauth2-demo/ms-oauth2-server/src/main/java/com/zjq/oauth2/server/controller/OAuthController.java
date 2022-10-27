@@ -19,6 +19,7 @@ import java.util.Map;
 
 /**
  * Oauth2 控制器
+ * @author zjq
  */
 @RestController
 @RequestMapping("oauth")

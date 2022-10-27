@@ -30,7 +30,7 @@ secure:
     urls: # 配置白名单路径
       - /actuator/**
       - /auth/oauth/**
-      - /diners/signin
+      - /users/signin
 
 # 配置 Eureka Server 注册中心
 eureka:

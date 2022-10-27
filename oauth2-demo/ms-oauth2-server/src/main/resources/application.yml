@@ -8,7 +8,7 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 123456
+    password: root
     url: jdbc:mysql://127.0.0.1:3306/oauth2?serverTimezone=Asia/Shanghai&characterEncoding=utf8&useUnicode=true&useSSL=false
   # Redis
   redis:

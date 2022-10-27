@@ -28,7 +28,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authenticated()
                 .and()
                 .requestMatchers()
-                .antMatchers("/user/**","/swagger-ui.html",",/v2/api-docs","/docs");
+                .antMatchers("/user/**"
+                        //todo 放行了还是访问不了swagger"/swagger-ui.html","/swagger-resources/**","/webjars/**","/v2/**","/api/**"
+                        );
     }
 
     @Override

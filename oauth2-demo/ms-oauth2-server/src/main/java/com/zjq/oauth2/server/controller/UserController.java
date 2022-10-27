@@ -4,6 +4,9 @@ import com.zjq.commons.model.domain.ResultInfo;
 import com.zjq.commons.model.domain.SignInIdentity;
 import com.zjq.commons.model.vo.SignInDinerInfo;
 import com.zjq.commons.utils.ResultInfoUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.security.core.Authentication;
@@ -20,6 +23,7 @@ import javax.servlet.http.HttpServletRequest;
  * 用户中心
  */
 @RestController
+@Api(tags = "用户中心")
 public class UserController {
 
     @Resource
@@ -28,7 +32,8 @@ public class UserController {
     @Resource
     private RedisTokenStore redisTokenStore;
 
-    @GetMapping("user/me")
+    @GetMapping("/user/me")
+    @ApiOperation("获取当前登录用户信息")
     public ResultInfo getCurrentUser(Authentication authentication) {
         // 获取登录用户的信息，然后设置
         SignInIdentity signInIdentity = (SignInIdentity) authentication.getPrincipal();
@@ -46,7 +51,9 @@ public class UserController {
      * @return
      */
     @GetMapping("user/logout")
-    public ResultInfo logout(String access_token, String authorization) {
+    @ApiOperation("获取当前登录用户信息")
+    public ResultInfo logout(@ApiParam(name = "access_token",value = "请求token") String access_token,
+                             @ApiParam(name = "authorization",value = "请求token（放置在请求头Authorization中的）") String authorization) {
         // 判断 access_token 是否为空，为空将 authorization 赋值给 access_token
         if (StringUtils.isBlank(access_token)) {
             access_token = authorization;
