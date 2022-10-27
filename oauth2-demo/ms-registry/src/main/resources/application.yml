@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 7000
 
 spring:
   application:
@@ -12,7 +12,7 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
     service-url:
-      defaultZone: http://localhost:8080/eureka/
+      defaultZone: http://localhost:7000/eureka/
 
 logging:
   pattern:

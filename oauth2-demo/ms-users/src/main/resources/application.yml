@@ -1,6 +1,6 @@
 server:
   # 端口
-  port: 8083
+  port: 7002
 
 spring:
   application:
@@ -39,7 +39,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka/
+      defaultZone: http://localhost:7000/eureka/
 
 # oauth2 服务地址
 service:

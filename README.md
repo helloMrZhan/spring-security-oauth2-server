@@ -113,13 +113,13 @@ Spring Security + oauth2+Redis实现认证授权服务
 
 获取当前用户信息。
 
-访问：http://localhost:8082/user/me?access_token=
+访问：http://localhost:7001/user/me?access_token=
 
 ![](/README.assets/image-20201114112638457.png)
 
 安全退出。
 
-访问：http://localhost:8082/user/logout?access_token=
+访问：http://localhost:7001/user/logout?access_token=
 
 ![](/README.assets/image-20201114112908656.png)
 

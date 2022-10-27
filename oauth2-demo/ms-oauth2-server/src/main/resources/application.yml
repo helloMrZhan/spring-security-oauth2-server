@@ -1,5 +1,5 @@
 server:
-  port: 8082 # 端口
+  port: 7001 # 端口
 
 spring:
   application:
@@ -46,7 +46,7 @@ eureka:
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
   client:
     service-url:
-      defaultZone: http://localhost:8080/eureka/
+      defaultZone: http://localhost:7000/eureka/
 
 # Mybatis
 mybatis:
