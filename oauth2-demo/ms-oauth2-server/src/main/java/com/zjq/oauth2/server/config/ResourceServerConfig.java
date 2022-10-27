@@ -28,7 +28,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
                 .authenticated()
                 .and()
                 .requestMatchers()
-                .antMatchers("/user/**");
+                .antMatchers("/user/**","/swagger-ui.html",",/v2/api-docs","/docs");
     }
 
     @Override
