@@ -11,10 +11,10 @@ spring:
           enabled: true # 开启配置注册中心进行路由功能
           lower-case-service-id: true # 将服务名称转小写
       routes:
-        - id: ms-diners
-          uri: lb://ms-diners
+        - id: ms-users
+          uri: lb://ms-users
           predicates:
-            - Path=/diners/**
+            - Path=/users/**
           filters:
             - StripPrefix=1
 
