@@ -31,6 +31,7 @@ secure:
       - /actuator/**
       - /auth/oauth/**
       - /users/signin
+      - /users/send
 
 # 配置 Eureka Server 注册中心
 eureka:
