@@ -39,9 +39,10 @@ CREATE TABLE `t_users`  (
 -- ----------------------------
 -- Records of t_users
 -- ----------------------------
-INSERT INTO `t_users` VALUES (1, 'abc', '昵称st', '13888888888', 'abc@zjq.com', 'e10adc3949ba59abbe56e057f20f883e', '/abc', 'ROLE_USER', 1, '2020-11-06 16:17:52', '2020-11-06 16:17:55');
-INSERT INTO `t_users` VALUES (2, 'test', 'test', '13666666666', NULL, 'e10adc3949ba59abbe56e057f20f883e', '/test', 'ROLE_USER', 1, '2020-11-12 12:01:13', '2020-11-12 12:01:13');
-INSERT INTO `t_users` VALUES (3, 'test2', 'test2', '13666666667', NULL, 'e10adc3949ba59abbe56e057f20f883e', '/test2', 'ROLE_USER', 1, '2020-11-12 17:47:12', '2020-11-12 17:47:12');
-INSERT INTO `t_users` VALUES (5, 'zjq', '共饮一杯无', '12311112222', NULL, 'e10adc3949ba59abbe56e057f20f883e', 'https://blog.csdn.net/qq_35427589?type=blog', 'ROLE_USER', 1, '2020-11-13 12:29:49', '2020-11-13 12:29:49');
+INSERT INTO `t_users` VALUES (1, 'zjq', '共饮一杯无', '17688888888', 'abc@zjq.com', 'e10adc3949ba59abbe56e057f20f883e', '/abc', 'ROLE_USER', 1, '2022-08-08 08:08:08', '2022-10-10 10:10:10');
+INSERT INTO `t_users` VALUES (2, 'test', '测试用户', '13666666666', NULL, 'e10adc3949ba59abbe56e057f20f883e', '/test', 'ROLE_USER', 1, '2022-08-08 08:08:08', '2022-10-10 10:10:10');
+INSERT INTO `t_users` VALUES (3, 'zhangsan', '张老三', '13666666688', NULL, 'e10adc3949ba59abbe56e057f20f883e', '/test2', 'ROLE_USER', 1, '2022-08-08 08:08:08', '2022-10-10 10:10:10');
+INSERT INTO `t_users` VALUES (5, 'wangwu', '王老五', '18066669999', NULL, 'e10adc3949ba59abbe56e057f20f883e', '/aaa', 'ROLE_USER', 0, '2022-08-08 08:08:08', '2022-10-10 10:10:10');
+INSERT INTO `t_users` VALUES (6, 'zhanjq', '共饮一杯无二号', '15388886666', NULL, 'e10adc3949ba59abbe56e057f20f883e', NULL, 'ROLE_USER', 1, '2022-10-29 22:48:45', '2022-10-29 22:48:45');
 
 SET FOREIGN_KEY_CHECKS = 1;

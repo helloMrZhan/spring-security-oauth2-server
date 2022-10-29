@@ -32,6 +32,8 @@ secure:
       - /auth/oauth/**
       - /users/signin
       - /users/send
+      - /users/user/checkPhone
+      - /users/user/register
 
 # 配置 Eureka Server 注册中心
 eureka:
