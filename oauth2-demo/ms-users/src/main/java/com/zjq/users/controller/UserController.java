@@ -2,6 +2,7 @@ package com.zjq.users.controller;
 
 import com.zjq.commons.model.domain.ResultInfo;
 import com.zjq.commons.model.domain.SignInIdentity;
+import com.zjq.commons.model.dto.UserDTO;
 import com.zjq.commons.model.vo.SignInDinerInfo;
 import com.zjq.commons.utils.ResultInfoUtil;
 import com.zjq.users.service.UserService;
@@ -9,9 +10,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -45,15 +44,27 @@ public class UserController {
         return userService.signIn(account, password, request.getServletPath());
     }
 
-    @GetMapping("me")
-    public ResultInfo getCurrentUser(Authentication authentication) {
-        // 获取登录用户的信息，然后设置
-        SignInIdentity signInIdentity = (SignInIdentity) authentication.getPrincipal();
-        // 转为前端可用的视图对象
-        SignInDinerInfo dinerInfo = new SignInDinerInfo();
-        BeanUtils.copyProperties(signInIdentity, dinerInfo);
-        return ResultInfoUtil.buildSuccess(request.getServletPath(), dinerInfo);
+    /**
+     * 校验手机号是否已注册
+     *
+     * @param phone
+     * @return
+     */
+    @GetMapping("checkPhone")
+    public ResultInfo checkPhone(String phone) {
+        userService.checkPhoneIsRegistered(phone);
+        return ResultInfoUtil.buildSuccess(request.getServletPath());
     }
 
+    /**
+     * 注册
+     *
+     * @param userDTO
+     * @return
+     */
+    @PostMapping("register")
+    public ResultInfo register(@RequestBody UserDTO userDTO) {
+        return userService.register(userDTO, request.getServletPath());
+    }
 
 }

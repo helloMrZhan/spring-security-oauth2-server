@@ -1,9 +1,11 @@
 package com.zjq.users.service;
 
 import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.crypto.digest.DigestUtil;
 import com.zjq.commons.constant.ApiConstant;
 import com.zjq.commons.model.domain.ResultInfo;
 import com.zjq.commons.model.domain.SignInIdentity;
+import com.zjq.commons.model.dto.UserDTO;
 import com.zjq.commons.model.pojo.Users;
 import com.zjq.commons.utils.AssertUtil;
 import com.zjq.commons.utils.ResultInfoUtil;
@@ -41,6 +43,9 @@ public class UserService implements UserDetailsService {
     private String oauthServerName;
     @Resource
     private OAuth2ClientConfiguration oAuth2ClientConfiguration;
+
+    @Resource
+    private SendVerifyCodeService sendVerifyCodeService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -99,6 +104,51 @@ public class UserService implements UserDetailsService {
         loginDinerInfo.setAvatarUrl(dinerInfo.getAvatarUrl());
         loginDinerInfo.setNickname(dinerInfo.getNickname());
         return ResultInfoUtil.buildSuccess(path, loginDinerInfo);
+    }
+
+
+    /**
+     * 用户注册
+     *
+     * @param userDTO
+     * @param path
+     * @return
+     */
+    public ResultInfo register(UserDTO userDTO, String path) {
+        // 参数非空校验
+        String username = userDTO.getUsername();
+        AssertUtil.isNotEmpty(username, "请输入用户名");
+        String password = userDTO.getPassword();
+        AssertUtil.isNotEmpty(password, "请输入密码");
+        String phone = userDTO.getPhone();
+        AssertUtil.isNotEmpty(phone, "请输入手机号");
+        String verifyCode = userDTO.getVerifyCode();
+        AssertUtil.isNotEmpty(verifyCode, "请输入验证码");
+        // 获取验证码
+        String code = sendVerifyCodeService.getCodeByPhone(phone);
+        // 验证是否过期
+        AssertUtil.isNotEmpty(code, "验证码已过期，请重新发送");
+        // 验证码一致性校验
+        AssertUtil.isTrue(!userDTO.getVerifyCode().equals(code), "验证码不一致，请重新输入");
+        // 验证用户名是否已注册
+        Users users = usersMapper.selectByUsername(username.trim());
+        AssertUtil.isTrue(users != null, "用户名已存在，请重新输入");
+        // 注册
+        // 密码加密
+        userDTO.setPassword(DigestUtil.md5Hex(password.trim()));
+        usersMapper.saveUser(userDTO);
+        // 自动登录
+        return signIn(username.trim(), password.trim(), path);
+    }
+
+    /**
+     * 校验手机号是否已注册
+     */
+    public void checkPhoneIsRegistered(String phone) {
+        AssertUtil.isNotEmpty(phone, "手机号不能为空");
+        Users users = usersMapper.selectByPhone(phone);
+        AssertUtil.isTrue(users == null, "该手机号未注册");
+        AssertUtil.isTrue(users.getIsValid() == 0, "该用户已锁定，请先解锁");
     }
 
 }

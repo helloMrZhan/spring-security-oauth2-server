@@ -22,7 +22,7 @@ Spring Security + oauth2+Redis实现认证授权服务
 
 - 在初始化项目下添加**ms-oauth2-server**微服务，在里面使用SpringSecurity + OAuth完成授权认证模块
 - 在ms-gateway微服务中利用Filter完成网关登录认证
-- 在ms-diners中完成客户端Diner的登录
+- 在ms-users中完成客户端Diner的登录
 
 
 
@@ -127,7 +127,7 @@ Spring Security + oauth2+Redis实现认证授权服务
 
 ### 网关测试
 
-访问：http://localhost/diners/signin?account=test&password=123456
+访问：http://localhost/users/signin?account=test&password=123456
 
 ![](/README.assets/image-20201114120232901.png)
 
