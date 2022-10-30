@@ -1,4 +1,4 @@
-package com.zjq.oauth2.server.mapper;
+package com.zjq.users.mapper;
 
 import com.zjq.commons.model.dto.UserDTO;
 import com.zjq.commons.model.pojo.Users;
