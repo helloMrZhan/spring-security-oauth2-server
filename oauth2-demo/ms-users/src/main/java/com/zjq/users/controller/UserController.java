@@ -55,35 +55,5 @@ public class UserController {
         return ResultInfoUtil.buildSuccess(request.getServletPath(), dinerInfo);
     }
 
-    /**
-     * 安全退出
-     *
-     * @param access_token
-     * @param authorization
-     * @return
-     */
-    @GetMapping("logout")
-    public ResultInfo logout(String access_token, String authorization) {
-        // 判断 access_token 是否为空，为空将 authorization 赋值给 access_token
-        if (StringUtils.isBlank(access_token)) {
-            access_token = authorization;
-        }
-        // 判断 authorization 是否为空
-        if (StringUtils.isBlank(access_token)) {
-            return ResultInfoUtil.buildSuccess(request.getServletPath(), "退出成功");
-        }
-        // 判断 bearer token 是否为空
-        if (access_token.toLowerCase().contains("bearer ".toLowerCase())) {
-            access_token = access_token.toLowerCase().replace("bearer ", "");
-        }
-//        // 清除 redis token 信息
-//        OAuth2AccessToken oAuth2AccessToken = redisTokenStore.readAccessToken(access_token);
-//        if (oAuth2AccessToken != null) {
-//            redisTokenStore.removeAccessToken(oAuth2AccessToken);
-//            OAuth2RefreshToken refreshToken = oAuth2AccessToken.getRefreshToken();
-//            redisTokenStore.removeRefreshToken(refreshToken);
-//        }
-        return ResultInfoUtil.buildSuccess(request.getServletPath(), "退出成功");
-    }
 
 }

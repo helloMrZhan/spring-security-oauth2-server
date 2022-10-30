@@ -5,6 +5,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * REST请求配置
+ * @author zjq
+ */
 @Configuration
 public class RestTemplateConfiguration {
 

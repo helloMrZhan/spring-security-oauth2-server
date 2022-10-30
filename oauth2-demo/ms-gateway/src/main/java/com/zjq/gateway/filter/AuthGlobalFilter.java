@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 
 /**
  * 网关全局过滤器
+ * @author zjq
  */
 @Component
 public class AuthGlobalFilter implements GlobalFilter, Ordered {

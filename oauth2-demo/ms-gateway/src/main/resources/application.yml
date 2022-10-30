@@ -10,6 +10,7 @@ spring:
         locator:
           enabled: true # 开启配置注册中心进行路由功能
           lower-case-service-id: true # 将服务名称转小写
+      # 路由策略
       routes:
         - id: ms-users
           uri: lb://ms-users
@@ -30,7 +31,7 @@ secure:
     urls: # 配置白名单路径
       - /actuator/**
       - /auth/oauth/**
-      - /users/signin
+      - /users/user/**
 
 # 配置 Eureka Server 注册中心
 eureka:
